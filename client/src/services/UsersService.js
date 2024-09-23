@@ -13,6 +13,6 @@ export default {
         return Api().put('user/' + user.id, user)
     },
     delete(user) {
-        return Api().delete('user/' + user.id, user)
+        return Api().delete('user/' + user.id)
     },
 }

@@ -13,6 +13,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // import routes
+
+require('./userPassport');
 require('./routes')(app);
 
 

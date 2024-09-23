@@ -37,7 +37,7 @@ module.exports = {
     },
     async remove(req, res){
         try{
-            const user = User.findByPk(req.params.userId);
+            const user = await User.findByPk(req.params.userId);
             if(!user){
                 return res.status(403).send({
                     error: 'ไม่มี user นี้ในระบบ'

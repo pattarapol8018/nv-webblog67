@@ -5,6 +5,7 @@ import UserIndex from '@/components/User/index'
 import UserEdit from '@/components/User/EditUser'
 import UserCreate from '@/components/User/CreateUser'
 import UserShow from '@/components/User/ShowUser'
+import Login from '@/components/Login'
 
 Vue.use(Router)
 
@@ -16,7 +17,7 @@ export default new Router({
       component: UserIndex
     },
     {
-      path: '/user/edit',
+      path: '/user/edit/:userId',
       name: 'user-edit',
       component: UserEdit
     },
@@ -29,6 +30,11 @@ export default new Router({
       path: '/user/:userId',
       name: 'user',
       component: UserShow
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     },
   ]
 })
