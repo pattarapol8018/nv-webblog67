@@ -14,32 +14,32 @@ module.exports = {
     },
     // create blog
     async create(req, res) {
-        // res.send(JSON.stringify(req.body))
         try {
-            console.log('Blog create req.body:',req.body)
-            const blog = await Blog.create(req.body)
-            console.log('Blog create blog:',blog)
-            res.send(blog.toJSON())
+            console.log('Blog create req.body:', req.body); // ตรวจสอบค่า req.body ว่ามี price หรือไม่
+            const blog = await Blog.create(req.body); // req.body จะต้องมีฟิลด์ price
+            console.log('Blog create blog:', blog);
+            res.send(blog.toJSON());
         } catch (err) {
-            console.log('Blog create err:',err)
+            console.log('Blog create err:', err);
             res.status(500).send({
                 error: 'Create blog incorrect'
-            })
+            });
         }
     },
     // edit blog, suspend, active
     async put(req, res) {
         try {
+            console.log('Blog update req.body:', req.body); // ตรวจสอบว่ามีการส่ง price มาหรือไม่
             await Blog.update(req.body, {
                 where: {
                     id: req.params.blogId
                 }
-            })
-            res.send(req.body)
+            });
+            res.send(req.body);
         } catch (err) {
             res.status(500).send({
                 error: 'Update blog incorrect'
-            })
+            });
         }
     },
     // delete blog

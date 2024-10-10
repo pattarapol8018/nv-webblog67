@@ -70,6 +70,10 @@
         <input type="text" v-model="blog.modelName" />
       </p>
       <p>
+   Price:
+   <input type="text" v-model="blog.price" />
+</p>
+      <p>
         <button type="submit">create blog</button>
       </p>
     </form>
@@ -104,6 +108,7 @@ export default {
         content: "",
         cc: "",
         modelName: "saved",
+        price: ""
       },
       config: {
         toolbar: [
@@ -134,7 +139,7 @@ export default {
     async createBlog() {
   this.blog.pictures = JSON.stringify(this.pictures);
   this.blog.thumbnail = this.blog.thumbnail;  // รวมฟิลด์ thumbnail ด้วย
-  console.log("JSON.stringify: ", this.blog);
+  console.log("JSON.stringify: ", this.blog); // เพิ่มบรรทัดนี้เพื่อตรวจสอบค่า blog ที่จะส่งไป
   try {
     await BlogsService.post(this.blog);
     this.$router.push({

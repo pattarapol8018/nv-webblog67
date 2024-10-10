@@ -20,6 +20,7 @@ require('./userPassport');
 require('./routes')(app);
 
 
+
 let port = config.port;
 
 sequelize.sync({ force: false }).then(() => {

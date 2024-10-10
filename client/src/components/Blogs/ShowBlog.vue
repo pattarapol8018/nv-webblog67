@@ -1,12 +1,13 @@
 <template>
-    <div>
-      <h1>Show Blog</h1>
+    <div class="header-background">
+      <h1><center>Show Blog</center></h1>
       <div class="blog-container">
         <div class="blog-info">
           <p>id: {{ blog.id }}</p>
           <p>Brand: {{ blog.Brand }}</p>
           <p>CC: {{ blog.cc }}</p>
           <p>Model name: {{ blog.modelName }}</p>
+          <p>Price: {{ blog.price }}</p>
         </div>
         <div class="blog-image">
           <!-- ใช้ content ในการแสดงรูปภาพ -->
@@ -105,6 +106,7 @@ button {
 button:hover {
   background-color: #005f6b; /* สีปุ่มเมื่อเอาเมาส์ไปชี้ */
 }
+
 </style>
 
   

@@ -56,7 +56,11 @@
       <p>CC: <input type="text" v-model="blog.cc" /></p>
       <p>Model name: <input type="text" v-model="blog.modelName" /></p>
       <p>
-        <button type="submit">update blog</button>
+   Price:
+   <input type="text" v-model="blog.price" />
+</p>
+      <p>
+        <button type="submit">Update</button>
         <button v-on:click="navigateTo('/blogs')">กลับ</button>
       </p>
     </form>
@@ -396,5 +400,30 @@ ul.pictures li img {
 /* thumbnail */
 .thumbnail-pic img {
   width: 200px;
+}
+button {
+  background-color: #f44336; /* สีแดง */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+button[type="submit"] {
+  background-color: #4CAF50; /* สีเขียว */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+button[type="submit"]:hover {
+  background-color: #45a049; /* สีเมื่อ hover */
+}
+button:hover {
+  background-color: #e60000; /* สีเมื่อ hover */
 }
 </style>
