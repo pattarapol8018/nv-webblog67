@@ -4,6 +4,7 @@ let bodyParser = require('body-parser');
 const cors = require('cors');
 const { sequelize } = require('./models');
 const config = require('./config/config');
+const path = require('path');
 
 
 const app = express();
@@ -11,6 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+app.use('/assets', express.static(path.join(__dirname, '../public')));
 
 // import routes
 

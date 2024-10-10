@@ -18,8 +18,8 @@
         </div>
         <hr>
       </div>
-      
     </div>
+    <div><button v-on:click="logout">Logout</button></div>
 
   </div>
 </template>
@@ -40,6 +40,13 @@ export default {
     }
   },
   methods:{
+    logout(){
+      this.$store.dispatch('setToken',null)
+      this.$store.dispatch('setUser',null)
+      this.$router.push({
+        name: 'login'
+      })
+    },
     navigateTo(route){
       this.$router.push(route);
     },
