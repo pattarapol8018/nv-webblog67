@@ -1,107 +1,141 @@
 <template>
-    <div class="background">
-        <p><button v-on:click="logout" class="btn btn-primary">Logout</button></p>
-      <h2>All motorcycle</h2>
-      <h4>จำนวน motorcycle : {{blogs.length}}</h4>
-  
-      <div v-for="blog in blogs" v-bind:key="blog.id" class="blog-container">
-        <div class="blog-info">
-          <p>Name: {{ blog.Brand }}</p>
-          <p>CC: {{ blog.cc }}</p>
-          <p>Model name: {{ blog.modelName }}</p>
-          <p>Price: {{ blog.price }}</p>
-          <p>
-            <button v-on:click="navigateTo('/blog/'+ blog.id)" class="btn btn-info">ดูข้อมูล</button>
-          </p>
-        </div>
-        <div class="blog-image">
-          <!-- แสดงรูปภาพตรงกลางตามขนาดที่ content กำหนด -->
-          <div v-html="blog.content"></div>
-        </div>
+  <div class="background">
+    <h2>All motorcycle</h2>
+    <h4>จำนวน motorcycle ทั้งหมด : {{ filteredBlogs.length }}</h4>
+
+    <!-- ส่วนสำหรับค้นหา -->
+    <div class="search-container">
+      <input v-model="searchQuery" type="text" placeholder="ค้นหา Brand" />
+    </div>
+
+    <!-- แสดงผลมอเตอร์ไซค์ที่ค้นหา -->
+    <div v-for="blog in filteredBlogs" v-bind:key="blog.id" class="blog-container">
+      <div class="blog-info">
+        <p>Brand: {{ blog.Brand }}</p>
+        <p>CC: {{ blog.cc }}</p>
+        <p>Model name: {{ blog.modelName }}</p>
+        <p>ราคา: {{ blog.price }}</p>
+        <p>ความเร็วสูงสุด KM/H: {{ blog.speed }}</p>
+        <p>
+          <button v-on:click="navigateTo('/blog/'+ blog.id)" class="btn btn-info">ดูข้อมูล</button>
+        </p>
+      </div>
+      <div class="blog-image">
+        <!-- แสดงรูปภาพตรงกลางตามขนาดที่ content กำหนด -->
+        <div v-html="blog.content"></div>
       </div>
     </div>
-  </template>
-  
-  <script>
-  
-  import BlogsService from '@/services/BlogsService'
-  
-  export default {
-    data() {
-      return {
-        BASE_URL: "http://localhost:8081/assets/uploads/",
-        blogs: []
-      };
-    },
-    async created() {
-      this.blogs = (await BlogsService.index()).data;
-    },
-    methods: {
-      logout() {
-        this.$store.dispatch('setToken', null);
-        this.$store.dispatch('setBlog', null);
-        this.$router.push({
-          name: 'login'
-        });
-      },
-      navigateTo(route) {
-        this.$router.push(route);
-      }
-    }
+    <p><button v-on:click="logout" class="btn btn-primary">Logout</button></p>
+  </div>
+</template>
+
+<script>
+
+import BlogsService from '@/services/BlogsService'
+
+export default {
+data() {
+  return {
+    BASE_URL: "http://localhost:8081/assets/uploads/",
+    blogs: [],
+    searchQuery: ""  // ฟิลด์สำหรับเก็บค่าค้นหา
   };
-  </script>
-  
-  <style scoped>
-  .blog-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
+},
+async created() {
+  this.blogs = (await BlogsService.index()).data;
+},
+computed: {
+  // ฟังก์ชันกรองผลลัพธ์การค้นหา
+  filteredBlogs() {
+    return this.blogs.filter(blog =>
+      blog.Brand.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
   }
-  
-  .blog-info {
-    flex: 2;
-    padding-right: 20px;
+},
+methods: {
+  logout() {
+    this.$store.dispatch('setToken', null);
+    this.$store.dispatch('setBlog', null);
+    this.$router.push({
+      name: 'login'
+    });
+  },
+  navigateTo(route) {
+    this.$router.push(route);
+  },
+  searchMotorcycle() {
+    // ฟังก์ชันการค้นหา สามารถเพิ่มเติม logic ในอนาคตได้
   }
-  
-  .blog-image {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .blog-image img {
-    max-width: 200px;
-    height: auto;
-    border-radius: 10px;
-  }
-  
-  .btn {
-    margin-top: 10px;
-  }
-  
-  h2, h4 {
-    text-align: center;
-  }
-  .background {
-  background-image: url('~@/assets/BG1.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  height: 100vh;
-  width: 100%;
 }
+};
+</script>
+
+<style scoped>
+.blog-container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 20px;
+border: 1px solid #ccc;
+padding: 10px;
+background-color: #f9f9f9;
+border-radius: 10px;
+}
+
+.blog-info {
+flex: 2;
+padding-right: 20px;
+}
+
+.blog-image {
+flex: 1;
+text-align: center;
+}
+
+.blog-image img {
+max-width: 200px;
+height: auto;
+border-radius: 10px;
+}
+
+.btn {
+margin-top: 10px;
+}
+
+h2, h4 {
+text-align: center;
+}
+
+.background {
+background-image: url('~@/assets/BG1.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center center;
+background-attachment: fixed;
+min-height: 100vh; 
+height: 100%; 
+width: 100%;
+}
+
 .header-background {
-  background-image: url('../../assets/BG1.jpg'); 
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  padding: 20px;
-  text-align: center;
-  border-radius: 10px;
+background-image: url('../../assets/BG1.jpg'); 
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center center;
+padding: 20px;
+text-align: center;
+border-radius: 10px;
 }
-  </style>
-  
+
+.search-container {
+margin: 20px 0;
+text-align: center;
+}
+
+.search-container input {
+padding: 8px;
+width: 200px;
+margin-right: 10px;
+}
+
+</style>

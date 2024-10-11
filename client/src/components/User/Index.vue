@@ -1,6 +1,6 @@
 <template>
   <div class="background">
-    <h1>Get All Users</h1>
+    <h1>All Users</h1>
     <hr>
     <div v-if="users.length" class="user-info-container">
       <div><b>จำนวนผู้ใช้งาน:</b> {{ users.length }}</div>
@@ -71,12 +71,36 @@ export default {
 </script>
 
 <style scoped>
+button {
+  background-color: #007bff; /* สีพื้นหลังปุ่ม */
+  border: none; /* ไม่แสดงขอบ */
+  color: white; /* สีตัวอักษร */
+  padding: 10px 20px; /* ระยะห่างขอบใน */
+  text-align: center; /* จัดให้อยู่กึ่งกลาง */
+  text-decoration: none; /* ไม่มีเส้นใต้ */
+  display: inline-block; /* จัดให้เป็นบล็อก */
+  font-size: 16px; /* ขนาดตัวอักษร */
+  margin: 4px 2px; /* ระยะห่างระหว่างปุ่ม */
+  cursor: pointer; /* เปลี่ยนเป็น pointer เมื่อ hover */
+  border-radius: 5px; /* ขอบโค้ง */
+  transition: background-color 0.3s ease; /* เพิ่มการเปลี่ยนสีพื้นหลังอย่างนุ่มนวล */
+}
+
+button:hover {
+  background-color: #0056b3; /* สีพื้นหลังเมื่อ hover */
+}
+
+button:active {
+  background-color: #003d80; /* สีพื้นหลังเมื่อกดปุ่ม */
+}
 .background {
   background-image: url('../../assets/BG2.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  min-height: 100vh;
+  background-attachment: fixed;
+  min-height: 100vh; 
+  height: 100%; 
   width: 100%;
 }
 

@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
         content: DataTypes.TEXT,         
         cc: DataTypes.STRING,           
         modelName: DataTypes.STRING,     
-        price: DataTypes.STRING          
+        price: DataTypes.STRING,
+        speed: DataTypes.STRING         
     });
 
     return Blog;

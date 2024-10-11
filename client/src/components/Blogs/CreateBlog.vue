@@ -1,10 +1,26 @@
 <template>
   <div>
-    <h1>Create Blog</h1>
+    <h1><center>Add motorcycle</center></h1>
     <form v-on:submit.prevent="createBlog">
       <p>
         Brand:
         <input type="text" v-model="blog.Brand" />
+      </p>
+      <p>
+        CC:
+        <input type="text" v-model="blog.cc" />
+      </p>
+      <p>
+        Model name:
+        <input type="text" v-model="blog.modelName" />
+      </p>
+      <p>
+   Price:
+   <input type="text" v-model="blog.price" />
+</p>
+<p>
+        Speed KM/H:
+        <input type="text" v-model="blog.speed" />
       </p>
       <transition name="fade">
   <div class="thumbnail-pic" v-if="blog.thumbnail != 'null'">
@@ -61,18 +77,6 @@
         @blur="onBlur($event)"
         @focus="onFocus($event)"
       />
-      <p>
-        CC:
-        <input type="text" v-model="blog.cc" />
-      </p>
-      <p>
-        Model name:
-        <input type="text" v-model="blog.modelName" />
-      </p>
-      <p>
-   Price:
-   <input type="text" v-model="blog.price" />
-</p>
       <p>
         <button type="submit">create blog</button>
       </p>
@@ -399,5 +403,24 @@ ul.pictures li img {
 /* thumbnail */
 .thumbnail-pic img {
   width: 200px;
+}
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50; /* สีพื้นหลังของปุ่ม */
+  color: white; /* สีของข้อความ */
+  border: none;
+  border-radius: 5px; /* ปรับมุมโค้งของปุ่ม */
+  cursor: pointer;
+  font-size: 16px; /* ขนาดของฟอนต์ */
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #45a049; /* สีเมื่อเอาเมาส์ไปชี้ */
+}
+
+button:active {
+  background-color: #3e8e41; /* สีเมื่อกดปุ่ม */
+  transform: translateY(2px); /* เพิ่มการย่อเมื่อกดปุ่ม */
 }
 </style>

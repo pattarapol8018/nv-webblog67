@@ -1,8 +1,14 @@
 <template>
   <div>
-    <h1>Edit Blog</h1>
+    <h1>Edit</h1>
     <form v-on:submit.prevent="editBlog">
       <p>Brand: <input type="text" v-model="blog.Brand" /></p>
+      <p>CC: <input type="text" v-model="blog.cc" /></p>
+      <p>Model name: <input type="text" v-model="blog.modelName" /></p>
+      <p>
+   Price:
+   <input type="text" v-model="blog.price" />
+</p>
       <transition name="fade">
         <div class="thumbnail-pic" v-if="blog.thumbnail != 'null'">
           <img :src="BASE_URL + blog.thumbnail" alt="thumbnail" />
@@ -53,12 +59,6 @@
         @blur="onBlur($event)"
         @focus="onFocus($event)"
       />
-      <p>CC: <input type="text" v-model="blog.cc" /></p>
-      <p>Model name: <input type="text" v-model="blog.modelName" /></p>
-      <p>
-   Price:
-   <input type="text" v-model="blog.price" />
-</p>
       <p>
         <button type="submit">Update</button>
         <button v-on:click="navigateTo('/blogs')">กลับ</button>
